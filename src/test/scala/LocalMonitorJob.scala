@@ -30,9 +30,9 @@ object LocalMonitorJob {
         val messages = Consumer
           .committableSource(consumerSettings, Subscriptions.topics("topic1"))
           .runForeach(x => fsm ! Message("test"))
-/*
+
         messages.onFailure {
             case e: Throwable => e.printStackTrace()
-        }*/
+        }
     }
 }

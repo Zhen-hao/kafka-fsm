@@ -22,7 +22,7 @@ class AlertFSM(topic: String) extends  FSM[State, Data] with Actor with ActorLog
     when(Idle) {
         case Event(Message(`watchingTopic`), Uninitialized) =>
             log.info("stream flow in topic " + watchingTopic + " has been detected, enter active state now")
-            val apiHandler = new SlackApi("https://hooks.slack.com/services/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")
+            val apiHandler = new SlackApi("put your slack web hook here")
             apiHandler.call(new SlackMessage("Monitor on topic " + watchingTopic, "Stream flow in topic " + watchingTopic + " has been detected. No action is required"))
             goto(Active) using Uninitialized
 
@@ -31,7 +31,7 @@ class AlertFSM(topic: String) extends  FSM[State, Data] with Actor with ActorLog
     when(Active, stateTimeout = 5 minute) {
         case Event(StateTimeout, Uninitialized) =>
             log.info("stream has stopped, send alert and enter idle state now")
-            val apiHandler = new SlackApi("https://hooks.slack.com/services/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")
+            val apiHandler = new SlackApi("put your slack web hook here")
             apiHandler.call(new SlackMessage("Monitor on topic " + watchingTopic, "Output stream stopped, please check"))
             goto(Idle) using Uninitialized
 
