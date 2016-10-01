@@ -33,4 +33,5 @@ class MonitorJob(configFilePath: String) extends JobSetting(configFilePath){
             case e: Throwable => e.printStackTrace()
         }
 */
+
 }

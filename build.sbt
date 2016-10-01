@@ -6,7 +6,7 @@ version := "1.0"
 scalaVersion := "2.11.8"
 
 oneJarSettings
-mainClass in oneJar := Some("com.sky.stream.monitor.MonitorJob")
+mainClass in oneJar := Some("kafka_fsm.MonitorJob")
 
 libraryDependencies +=
   "com.typesafe.akka" %% "akka-actor" % "2.4.10"
